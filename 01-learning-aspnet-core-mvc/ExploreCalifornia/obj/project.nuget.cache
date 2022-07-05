@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "WzVPAE7j3eLHlfD+cMC9RYMoak1xiuVJffJWVgTrugqLeLkSssGvR7Rh0xRgyilfQrK+QzUz4H2P1SB1esxDgA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ErangaGayashanBISTEC\\aspnetcore-workspace\\aspnetcore-dev-path-linkedin\\01-learning-aspnet-core-mvc\\ExploreCalifornia\\ExploreCalifornia.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ErangaGayashanBISTEC\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.25\\microsoft.netcore.app.host.win-x64.3.1.25.nupkg.sha512"
+  ],
+  "logs": []
+}
