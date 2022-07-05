@@ -7,16 +7,19 @@ using System.Threading.Tasks;
 
 namespace ExploreCalifornia.Controllers
 {
+    //[Route("blog")]
     public class BlogController : Controller
     {
+        
         public ActionResult Index()
         {
             return new ContentResult { Content = "Blog Posts"};
         }
 
-        public ActionResult Post(string id, string title)
+        [Route("blog/{year:min(2000)}/{month:range(1,12)}/{key}")]
+        public ActionResult Post(int year, int month, string key)
         {
-            return new ContentResult { Content = $"Blog post id : {id}, Title : {title}" };
+            return new ContentResult { Content = $"Blog post info => year : {year}, month: {month} , Title : {key}" };
         }
 
         public ActionResult Writer(int? id)
