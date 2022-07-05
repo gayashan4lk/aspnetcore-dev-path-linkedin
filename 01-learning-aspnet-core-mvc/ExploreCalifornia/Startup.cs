@@ -49,7 +49,7 @@ namespace ExploreCalifornia
                 endpoints.MapRazorPages();
             });*/
 
-            app.Use(async (context, next) =>
+            /*app.Use(async (context, next) =>
             {
                 if (context.Request.Path.Value.Contains("/hello"))
                     await context.Response.WriteAsync("Hello.");
@@ -59,7 +59,9 @@ namespace ExploreCalifornia
             app.Run(async context =>
             {
                 await context.Response.WriteAsync("How are you?");
-            });
+            });*/
+
+            app.UseFileServer();
         }
     }
 }
