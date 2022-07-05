@@ -8,7 +8,7 @@ namespace ExploreCalifornia.Controllers
         // GET: HomeController
         public ActionResult Index()
         {
-            return new ContentResult { Content = "Hello from home controller! sdf" };
+            return View();
         }
 
         /*// GET: HomeController/Details/5
