@@ -13,13 +13,15 @@ namespace ExploreCalifornia.Controllers
         
         public ActionResult Index()
         {
-            return new ContentResult { Content = "Blog Posts"};
+            //return new ContentResult { Content = "Blog Posts"};
+            return View();
         }
 
         [Route("blog/{year:min(2000)}/{month:range(1,12)}/{key}")]
         public ActionResult Post(int year, int month, string key)
         {
-            return new ContentResult { Content = $"Blog post info => year : {year}, month: {month} , Title : {key}" };
+            //return new ContentResult { Content = $"Blog post info => year : {year}, month: {month} , Title : {key}" };
+            return View(new { year = year, month = month, key = key });
         }
 
         public ActionResult Writer(int? id)
