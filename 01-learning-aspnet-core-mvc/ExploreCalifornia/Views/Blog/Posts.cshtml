@@ -1,0 +1,15 @@
+﻿@model ExploreCalifornia.Models.Post
+@{
+    Layout = "_Layout";
+}
+
+<article class="blog-post">
+    <h1>@Model.Title</h1>
+    <div class="details">
+        <span>Posted at @Model.PostedAt</span>
+        <h3>Written By @Model.Author</h3>
+    </div>
+    <div class="contents">
+        <p>@Model.Body</p>
+    </div>
+</article>

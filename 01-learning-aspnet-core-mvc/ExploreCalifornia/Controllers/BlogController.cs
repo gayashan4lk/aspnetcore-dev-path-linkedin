@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ExploreCalifornia.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +19,17 @@ namespace ExploreCalifornia.Controllers
         }
 
         [Route("blog/{year:min(2000)}/{month:range(1,12)}/{key}")]
-        public ActionResult Post(int year, int month, string key)
+        public ActionResult Posts(int year, int month, string key)
         {
             //return new ContentResult { Content = $"Blog post info => year : {year}, month: {month} , Title : {key}" };
-            ViewBag.Title = "My Awesome Blog Post";
-            ViewBag.Posted = DateTime.Now;
-            ViewBag.Author = "Albus Percival Wulfric Brian Dumbledore";
-            ViewBag.Content = "This is the begining of the life story of the Dumbledore";
-
-            return View();
+            var myPost = new Post
+            {
+                Title = "My Awesome Life",
+                PostedAt = DateTime.Now,
+                Author = "Albus Percival Wulfric Brian Dumbledore",
+                Body = "This is the begining of the life story of the Dumbledore",
+            };
+            return View(myPost);
         }
 
         public ActionResult Writer(int? id)
