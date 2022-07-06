@@ -44,5 +44,19 @@ namespace ExploreCalifornia.Controllers
         {
             return new ContentResult { Content = id.ToString() };
         }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Post post)
+        {
+            post.Author = User.Identity.Name;
+            post.PostedAt = DateTime.Now;
+            return View();
+        }
     }
 }
