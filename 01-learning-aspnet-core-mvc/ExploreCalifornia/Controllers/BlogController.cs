@@ -21,7 +21,12 @@ namespace ExploreCalifornia.Controllers
         public ActionResult Post(int year, int month, string key)
         {
             //return new ContentResult { Content = $"Blog post info => year : {year}, month: {month} , Title : {key}" };
-            return View(new { year = year, month = month, key = key });
+            ViewBag.Title = "My Awesome Blog Post";
+            ViewBag.Posted = DateTime.Now;
+            ViewBag.Author = "Albus Percival Wulfric Brian Dumbledore";
+            ViewBag.Content = "This is the begining of the life story of the Dumbledore";
+
+            return View();
         }
 
         public ActionResult Writer(int? id)
