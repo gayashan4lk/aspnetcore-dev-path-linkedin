@@ -1,3 +1,4 @@
+using ExploreCalifornia.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExploreCalifornia
 {
@@ -24,11 +26,20 @@ namespace ExploreCalifornia
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
             services.AddRazorPages();
+
             services.AddTransient<FeatureToggles>(x => new FeatureToggles
             {
                 DeveloperExceptions = Configuration.GetValue<bool>("FeatureToggles:DeveloperExceptions")
             }) ;
+
+            services.AddDbContext<BlogDataContext>(options =>
+            {
+                var connectionString = Configuration.GetConnectionString("SqlServerConnection");
+                options.UseSqlServer(connectionString);
+            });
+            
             //services.AddMvc();
             //services.AddMvc(options => options.EnableEndpointRouting = false);
         }
