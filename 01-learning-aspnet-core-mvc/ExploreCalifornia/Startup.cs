@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace ExploreCalifornia
 {
@@ -36,11 +37,20 @@ namespace ExploreCalifornia
 
             services.AddDbContext<BlogDataContext>(options =>
             {
-                var connectionString = Configuration.GetConnectionString("SqlServerConnection");
+                var connectionString = Configuration.GetConnectionString("BlogDataContext");
+                options.UseSqlServer(connectionString);
+            });
+
+            services.AddDbContext<IdentityDataContext>(options =>
+            {
+                var connectionString = Configuration.GetConnectionString("IdentityDataContext");
                 options.UseSqlServer(connectionString);
             });
 
             services.AddTransient<FormattingServices>();
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<IdentityDataContext>();
             //services.AddMvc();
             //services.AddMvc(options => options.EnableEndpointRouting = false);
         }
@@ -89,6 +99,13 @@ namespace ExploreCalifornia
             //app.UseMvc(routes => routes.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}"));
 
             app.UseRouting();
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
+
+            //app.UseIdentity();
+
 
             app.UseEndpoints(endpoints =>
             {

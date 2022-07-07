@@ -1,4 +1,5 @@
 ﻿using ExploreCalifornia.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -67,26 +68,28 @@ namespace ExploreCalifornia.Controllers
             return View(post);
         }
 
-/*
-        public ActionResult Writer(int? id)
-        {
-            if (id == null)
-                return new ContentResult { Content = "null" };
-            else
-                return new ContentResult { Content = id.ToString() };
-        }
+        /*
+                public ActionResult Writer(int? id)
+                {
+                    if (id == null)
+                        return new ContentResult { Content = "null" };
+                    else
+                        return new ContentResult { Content = id.ToString() };
+                }
 
-        public ActionResult Reader(int id = -1)
-        {
-            return new ContentResult { Content = id.ToString() };
-        }*/
+                public ActionResult Reader(int id = -1)
+                {
+                    return new ContentResult { Content = id.ToString() };
+                }*/
 
+        [Authorize]
         [HttpGet, Route("create")]
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost, Route("create")]
         public ActionResult Create(Post post)
         {
