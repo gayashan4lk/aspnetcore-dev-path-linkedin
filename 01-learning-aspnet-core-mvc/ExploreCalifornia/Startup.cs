@@ -39,7 +39,8 @@ namespace ExploreCalifornia
                 var connectionString = Configuration.GetConnectionString("SqlServerConnection");
                 options.UseSqlServer(connectionString);
             });
-            
+
+            services.AddTransient<FormattingServices>();
             //services.AddMvc();
             //services.AddMvc(options => options.EnableEndpointRouting = false);
         }
