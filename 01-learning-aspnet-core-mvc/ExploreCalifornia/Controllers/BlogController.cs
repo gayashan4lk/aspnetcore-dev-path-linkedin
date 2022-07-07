@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ExploreCalifornia.Controllers
 {
-    //[Route("blog")]
+    [Route("blog")]
     public class BlogController : Controller
     {
         private readonly BlogDataContext _db;
@@ -21,23 +21,28 @@ namespace ExploreCalifornia.Controllers
         public ActionResult Index()
         {
             //return new ContentResult { Content = "Blog Posts"};
-            return View();
+            var posts = _db.Posts.OrderByDescending(x => x.PostedAt).Take(5).ToArray();
+            return View(posts);
         }
 
-        [Route("blog/{year:min(2000)}/{month:range(1,12)}/{key}")]
-        public ActionResult Posts(int year, int month, string key)
+        [Route("{year:min(2000)}/{month:range(1,12)}/{key}")]
+        public ActionResult Post(int year, int month, string key)
         {
             //return new ContentResult { Content = $"Blog post info => year : {year}, month: {month} , Title : {key}" };
-            var myPost = new Post
+            /*var myPost = new Post
             {
                 Title = "My Awesome Life",
                 PostedAt = DateTime.Now,
                 Author = "Albus Percival Wulfric Brian Dumbledore",
                 Body = "This is the begining of the life story of the Dumbledore",
             };
-            return View(myPost);
+            return View(myPost);*/
+
+            var post = _db.Posts.FirstOrDefault(x => x.Key == key);
+            return View(post);
         }
 
+/*
         public ActionResult Writer(int? id)
         {
             if (id == null)
@@ -49,15 +54,15 @@ namespace ExploreCalifornia.Controllers
         public ActionResult Reader(int id = -1)
         {
             return new ContentResult { Content = id.ToString() };
-        }
+        }*/
 
-        [HttpGet]
+        [HttpGet, Route("create")]
         public ActionResult Create()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, Route("create")]
         public ActionResult Create(Post post)
         {
             if (!ModelState.IsValid)
@@ -68,7 +73,13 @@ namespace ExploreCalifornia.Controllers
             _db.Posts.Add(post);
             _db.SaveChanges();
 
-            return View();
+            return RedirectToAction("Post", "Blog", 
+                new
+                {
+                    year = post.PostedAt.Year,
+                    month = post.PostedAt.Month,
+                    key = post.Key,
+                });
         }
     }
 }
