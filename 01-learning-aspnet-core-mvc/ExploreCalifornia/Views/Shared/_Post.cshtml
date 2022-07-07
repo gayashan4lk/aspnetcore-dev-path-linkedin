@@ -1,0 +1,15 @@
+﻿@model ExploreCalifornia.Models.Post
+
+<article class="blog-post">
+    <h1>
+        @Html.ActionLink(Model.Title, "Post", "Blog", 
+        new {year = Model.PostedAt.Year, month = Model.PostedAt.Month, key = Model.Key})
+    </h1>
+    <div class="details">
+        <span>Posted at @Model.PostedAt</span>
+        <h3>Written By @Model.Author</h3>
+    </div>
+    <div class="contents">
+        <p>@Model.Body</p>
+    </div>
+</article>

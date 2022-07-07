@@ -12,19 +12,7 @@
 <div class="blog-posts">
     @foreach (var post in Model)
     {
-        <article class="blog-post">
-            <h1>
-                @Html.ActionLink(post.Title, "Post", "Blog", 
-                new {year = post.PostedAt.Year, month = post.PostedAt.Month, key = post.Key})
-            </h1>
-            <div class="details">
-                <span>Posted at @post.PostedAt</span>
-                <h3>Written By @post.Author</h3>
-            </div>
-            <div class="contents">
-                <p>@post.Body</p>
-            </div>
-        </article>
+        @await Html.PartialAsync("_Post", post)
     }
 </div>
 
