@@ -106,7 +106,6 @@ namespace ExploreCalifornia
 
             //app.UseIdentity();
 
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("Default", "{controller=Home}/{action=Index}/{id?}");
