@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace LandonApi.Controllers
 {
@@ -9,7 +10,7 @@ namespace LandonApi.Controllers
         [HttpGet(Name = nameof(GetRooms))]
         public IActionResult GetRooms()
         {
-            return Ok("I have rooms");
+            throw new NotImplementedException();
         }
     }
 }
