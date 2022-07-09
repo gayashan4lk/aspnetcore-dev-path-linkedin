@@ -47,6 +47,10 @@ namespace LandonApi
                 options.ReportApiVersions = true;
                 options.ApiVersionSelector = new CurrentImplementationApiVersionSelector(options);
             });
+            services.AddCors(options => 
+            { 
+                options.AddPolicy("AllowMyApp", policy => policy.AllowAnyOrigin()); 
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,6 +67,8 @@ namespace LandonApi
             }
             
             app.UseRouting();
+
+            app.UseCors("AllowMyApp");
 
             app.UseAuthorization();
 
