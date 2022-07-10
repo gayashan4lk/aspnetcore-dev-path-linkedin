@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using LandonApi.Services;
 
 namespace LandonApi
 {
@@ -58,6 +59,7 @@ namespace LandonApi
             // Use in-memory database for quick dev and testing
             // TODO: swap out for a real database in production
             services.AddDbContext<HotelApiDbContext>(options => options.UseInMemoryDatabase("landondb"));
+            services.AddScoped<IRoomService, DefaultRoomService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
