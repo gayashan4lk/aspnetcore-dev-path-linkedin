@@ -1,4 +1,5 @@
 using LandonApi.Filters;
+using LandonApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -51,6 +52,7 @@ namespace LandonApi
             { 
                 options.AddPolicy("AllowMyApp", policy => policy.AllowAnyOrigin()); 
             });
+            services.Configure<HotelInfo>(Configuration.GetSection("HotelInfo"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

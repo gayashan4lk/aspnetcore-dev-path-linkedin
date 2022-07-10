@@ -4,7 +4,7 @@ namespace LandonApi.Models
 {
     public abstract class Resource
     {
-        [JsonProperty(Order = -2)]
+        [JsonProperty(Order = -1)]
         public string Href { get; set; }
     }
 }
