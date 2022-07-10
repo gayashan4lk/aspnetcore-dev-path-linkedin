@@ -1,4 +1,5 @@
-﻿using LandonApi.Models;
+﻿using AutoMapper;
+using LandonApi.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,12 @@ namespace LandonApi.Services
     public class DefaultRoomService : IRoomService
     {
         private readonly HotelApiDbContext context;
+        private readonly IMapper mapper;
 
-        public DefaultRoomService(HotelApiDbContext context)
+        public DefaultRoomService(HotelApiDbContext context, IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
 
         public async Task<Room> GetRoomAsync(Guid id)
@@ -26,12 +29,7 @@ namespace LandonApi.Services
                 return null;
             }
 
-            return new Room
-            {
-                Href = null, // For later
-                Name = entity.Name,
-                Rate = entity.Rate / 100.0m,
-            };
+            return mapper.Map<Room>(entity);
         }
     }
 }
