@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace LandonApi
 {
@@ -53,6 +54,10 @@ namespace LandonApi
                 options.AddPolicy("AllowMyApp", policy => policy.AllowAnyOrigin()); 
             });
             services.Configure<HotelInfo>(Configuration.GetSection("HotelInfo"));
+
+            // Use in-memory database for quick dev and testing
+            // TODO: swap out for a real database in production
+            services.AddDbContext<HotelApiDbContext>(options => options.UseInMemoryDatabase("landondb"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
