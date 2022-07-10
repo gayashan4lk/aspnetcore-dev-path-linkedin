@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LandonApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LandonApi
 {
