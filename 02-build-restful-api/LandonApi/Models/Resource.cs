@@ -1,7 +1,10 @@
-﻿namespace LandonApi.Models
+﻿using Newtonsoft.Json;
+
+namespace LandonApi.Models
 {
-    public abstract class Resource
+    public abstract class Resource : Link
     {
-        public string Href { get; set; }
+        [JsonIgnore]
+        public Link Self { get; set; }
     }
 }
