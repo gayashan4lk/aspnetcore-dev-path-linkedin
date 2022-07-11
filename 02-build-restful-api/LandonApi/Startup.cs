@@ -38,7 +38,8 @@ namespace LandonApi
                 options.Filters.Add<RequireHttpsOrCloseAttribute>();
                 options.Filters.Add<LinkRewritingFilter>();
             });
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
+            
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddSwaggerGen(c =>
             {
