@@ -36,6 +36,7 @@ namespace LandonApi
             {
                 options.Filters.Add<JsonExceptionFilter>();
                 options.Filters.Add<RequireHttpsOrCloseAttribute>();
+                options.Filters.Add<LinkRewritingFilter>();
             });
             services.AddControllers();
             services.AddRouting(options => options.LowercaseUrls = true);
