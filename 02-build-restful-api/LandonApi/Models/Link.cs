@@ -20,6 +20,14 @@ namespace LandonApi.Models
             Relations = null,
         };
 
+        public static Link ToCollection(string routeName, object routeValues = null) => new Link
+        {
+            RouteName = routeName,
+            RouteValues = routeValues,
+            Method = GET_METHOD,
+            Relations = new[] { "collections" },
+        };
+
         [JsonProperty(Order = -4)]
         public string Href { get; set; }
 
